@@ -3,7 +3,7 @@ let app = new express();
 app.set("view engine","ejs")
 // set up database connection
 const knex = require("knex")({
- client: "mysql12",
+ client: "mysql",
  connection: {
   host:"pokemon-db.c1g0y6ay8poy.us-east-2.rds.amazonaws.com",
   user: "admin",
