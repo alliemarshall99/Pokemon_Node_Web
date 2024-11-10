@@ -1,10 +1,10 @@
 #!/bin/bash
-# Navigate to the app directory
+# Navigate to the application directory
 cd /home/ec2-user/app
 
-# Set up NVM and Node.js environment
+# Set up Node.js environment
 export NVM_DIR="/home/ec2-user/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-# Start the application using pm2 with the full path
-/usr/bin/pm2 start index.js --name "pokemon_app"  # Assigns a name for easy reference in pm2
+# Start the app with pm2
+pm2 start /home/ec2-user/app/index.js --name "index" || pm2 restart "index"
