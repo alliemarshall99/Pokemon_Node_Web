@@ -1,5 +1,7 @@
 #!/bin/bash
-cd /home/ec2-user/app
-export NVM_DIR="/home/ec2-user/.nvm" 
+# Set up NVM and Node.js environment
+export NVM_DIR="/home/ec2-user/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-pm2 stop index.js
+
+# Stop the application by name (consistent with app_start.sh)
+/usr/bin/pm2 stop "pokemon_app" || true  # Ignore error if the app is not running
