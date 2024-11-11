@@ -61,7 +61,19 @@
         <a class="nav-item nav-link active" href="#">Home</a>
         <a class="nav-item nav-link" href="#" onclick="fetchByType('bug')">Bug</a>
         <a class="nav-item nav-link" href="#" onclick="fetchByType('dragon')">Dragon</a>
-        <!-- Additional types as needed -->
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('electric')">Electric</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('fighting')">Fighting</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('fire')">Fire</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('flying')">Flying</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('ghost')">Ghost</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('grass')">Grass</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('ground')">Ground</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('ice')">Ice</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('normal')">Normal</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('poison')">Poison</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('psychic')">Psychic</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('rock')">Rock</a>
+        <a class="nav-item nav-link" href="#" onclick="fetchByType('water')">Water</a>
       </div>
     </div>
   </nav>
@@ -69,7 +81,7 @@
   <div id="image-gallery"></div>
 
   <script>
-    const api_base_url = 'http://ec2-18-119-159-121.us-east-2.compute.amazonaws.com:3000';
+    const api_base_url = 'http://3.18.76.105:3000';
 
     // Initial load with server-rendered data
     window.onload = () => displayImages(<%= JSON.stringify(images) %>);
@@ -86,6 +98,7 @@
     }
 
     function displayImages(images) {
+      console.log("Rendering images:", images); // Debug log to check if data is reaching the client
       const gallery = document.getElementById('image-gallery');
       gallery.innerHTML = '';  // Clear the gallery
       images.forEach(image => {
