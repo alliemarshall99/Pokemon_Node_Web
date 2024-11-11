@@ -1,17 +1,17 @@
 version: 0.0
 os: linux
 files:
-  - source: scripts/
-    destination: /home/ec2-user/app/scripts
+  - source: /
+    destination: /home/ec2-user/Pokemon_Node_App
 
 hooks:
   BeforeInstall:
-    - location: scripts/app_install.sh
+    - location: scripts/app_stop.sh
       timeout: 300
       runas: ec2-user
 
-  ApplicationStop:
-    - location: scripts/app_stop.sh
+  AfterInstall:
+    - location: scripts/app_install.sh
       timeout: 300
       runas: ec2-user
 
@@ -20,3 +20,7 @@ hooks:
       timeout: 300
       runas: ec2-user
 
+  ApplicationStop:
+    - location: scripts/app_stop.sh
+      timeout: 300
+      runas: ec2-user
