@@ -15,6 +15,11 @@ const knex = require("knex")({
   },
 });
 
+// Health check route
+app.get('/health', (req, res) => {
+  res.status(200).send('Healthy');
+});
+
 // Main route - loads a default Pokémon type (e.g., 'electric')
 app.get("/", (req, res) => {
   knex
@@ -60,3 +65,4 @@ app.get("/:type", (req, res) => {
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
+
