@@ -1,7 +1,7 @@
 let express = require("express");
 let app = new express();
 app.set("view engine", "ejs");
-app.set("views", "/home/ec2-user/app/views");
+app.set("views", "/home/ec2-user/Pokemon_Node_Web/views");
 
 // Set up database connection
 const knex = require("knex")({
