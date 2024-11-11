@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
     .select("image_url", "pokemon_name", "pokedex_number")
     .from("electric") // Default to 'electric' table for initial load
     .then((result) => {
+      console.log("Fetched data:", result); // Log the fetched data
       res.render("index", { images: result });
     })
     .catch((error) => {
@@ -65,4 +66,3 @@ app.get("/:type", (req, res) => {
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
-
