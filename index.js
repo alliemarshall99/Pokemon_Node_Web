@@ -1,6 +1,7 @@
 let express = require("express");
 let app = new express();
 app.set("view engine", "ejs");
+app.set("views", "/home/ec2-user/app/views");
 
 // Set up database connection
 const knex = require("knex")({
@@ -14,13 +15,12 @@ const knex = require("knex")({
   },
 });
 
+// Main route - loads a default Pokémon type (e.g., 'electric')
 app.get("/", (req, res) => {
-  // Query the Pokémon table for image and name data
   knex
-    .select("image_url", "pokemon_name", "pokedex_number") // Adjust these to match your table columns
-    .from("pokemon") // Ensure this is your correct Pokémon table name
+    .select("image_url", "pokemon_name", "pokedex_number")
+    .from("electric") // Default to 'electric' table for initial load
     .then((result) => {
-      // Render the EJS template with Pokémon data
       res.render("index", { images: result });
     })
     .catch((error) => {
@@ -29,6 +29,34 @@ app.get("/", (req, res) => {
     });
 });
 
+// Dynamic route for different Pokémon types
+app.get("/:type", (req, res) => {
+  const type = req.params.type;
+
+  // Validate that the requested type is a valid table
+  const validTypes = [
+    "bug", "dragon", "electric", "fighting", "fire", 
+    "flying", "ghost", "grass", "ground", "ice", 
+    "normal", "poison", "psychic", "rock", "water"
+  ];
+  
+  if (!validTypes.includes(type)) {
+    return res.status(400).send("Invalid Pokémon type");
+  }
+
+  knex
+    .select("image_url", "pokemon_name", "pokedex_number")
+    .from(type) // Query the specific type table
+    .then((result) => {
+      res.json(result); // Return data as JSON for AJAX request
+    })
+    .catch((error) => {
+      console.error(`Error fetching ${type} Pokémon data:`, error);
+      res.status(500).send("Error fetching data");
+    });
+});
+
+// Start the server
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
