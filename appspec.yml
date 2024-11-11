@@ -9,23 +9,14 @@ hooks:
     - location: scripts/app_install.sh
       timeout: 300
       runas: ec2-user
-      # Ensuring logging for diagnostics
-      # Additional logging if needed
-      script: |
-        echo "BeforeInstall Hook: app_install.sh starting" >> /home/ec2-user/app/logs/deploy.log
 
   ApplicationStop:
     - location: scripts/app_stop.sh
       timeout: 300
       runas: ec2-user
-      # Ensure logging if script runs
-      script: |
-        echo "ApplicationStop Hook: app_stop.sh starting" >> /home/ec2-user/app/logs/deploy.log
 
   ApplicationStart:
     - location: scripts/app_start.sh
       timeout: 300
       runas: ec2-user
-      # Logging confirmation for script initiation
-      script: |
-        echo "ApplicationStart Hook: app_start.sh starting" >> /home/ec2-user/app/logs/deploy.log
+
