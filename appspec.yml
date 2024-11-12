@@ -2,10 +2,14 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/Pokemon_Node_Web
-
+    destination: /home/ec2-user/app
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user  
 hooks:
-  BeforeInstall:
+  ApplicationStop:
     - location: scripts/app_stop.sh
       timeout: 300
       runas: ec2-user
@@ -20,7 +24,4 @@ hooks:
       timeout: 300
       runas: ec2-user
 
-  ApplicationStop:
-    - location: scripts/app_stop.sh
-      timeout: 300
-      runas: ec2-user
+
