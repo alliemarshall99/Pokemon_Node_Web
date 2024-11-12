@@ -83,7 +83,7 @@
     const api_base_url = 'http://3.18.76.105:3000';
 
     // Load default images on page load
-    window.onload = () => displayImages(<%= JSON.stringify(images) %>);
+    window.onload = () => fetchByType('electric');
 
     async function fetchByType(type) {
       const url = `${api_base_url}/${type}`;
